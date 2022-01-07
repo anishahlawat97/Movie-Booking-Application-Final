@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../common/header/Header";
 import "./Confirmation.css";
-import Typography from "@material-ui/core/Typography";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Snackbar from "@material-ui/core/Snackbar";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
+import { Typography } from "@mui/material";
+import { Input } from "@mui/material";
+import { InputLabel } from "@mui/material";
+import { FormControl } from "@mui/material";
+import { Button } from "@mui/material";
+import { Card } from "@mui/material";
+import { CardContent } from "@mui/material";
+import { Snackbar } from "@mui/material";
+import { IconButton } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import green from "@material-ui/core/colors/green";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { green } from "@mui/material/colors";
 import { Link } from "react-router-dom";
 
 const styles = (theme) => ({

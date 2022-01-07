@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../common/header/Header";
-import Typography from "@material-ui/core/Typography";
+import { Typography } from "@mui/material";
 import "./BookShow.css";
 import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Input from "@material-ui/core/Input";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import Button from "@material-ui/core/Button";
-import FormHelperText from "@material-ui/core/FormHelperText";
+import { CardContent } from "@mui/material";
+import { FormControl } from "@mui/material";
+import { InputLabel } from "@mui/material";
+import { Input } from "@mui/material";
+import { Select } from "@mui/material";
+import { MenuItem } from "@mui/material";
+import { Button } from "@mui/material";
+import { FormHelperText } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const BookShow = (props) => {
@@ -36,7 +36,7 @@ const BookShow = (props) => {
   useEffect(() => {
     let dataShows = null;
 
-    fetch(props.baseUrl + "movies/" + props.match.params.id + "/shows", {
+    fetch(props.baseUrl + "movies/" + props.params.id + "/shows", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

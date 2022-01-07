@@ -1,5 +1,4 @@
-import React from "react";
-import { Component } from "react";
+import React, { useContext, useState } from "react";
 import './Home.css';
 import MovieData from '../../common/moviesData.js';
 import ImageList from './ImageList.js';
@@ -8,24 +7,18 @@ import FilterCard from './FilterCard.js';
 import AppContext from "../../AppContext";
 
 
-class Home extends Component{
-    constructor(props){
-        super(props);
-        this.state={
-            movieName: '',
-            genreName: [],
-            personName: [],           
-            startDate: '',
-            endDate: '' ,
-            name: ''                  
-        };
-        this.setState= this.setState.bind(this);
-    }
-    static contextType = AppContext;
-
+function Home(){
+    const [state, setState] = useState({
+        movieName: '',
+        genreName: [],
+        personName: [],           
+        startDate: '',
+        endDate: '' ,
+        name: '',
+    })   
+    const context = useContext(AppContext);  
     
-    render(){
-        return <div>                    
+        return (<div>{context.setBookShowValue(false)}                    
                     <div className="heading">
                         <span>Upcoming Movies</span>                        
                     </div>
@@ -34,14 +27,14 @@ class Home extends Component{
                     </div>
                     <div className="flex-container">
                         <div className="left">
-                           <RegularImageList imageOnClick={this.context.setBookShowValue} filterState={this.state} movieData={MovieData}/>
+                           <RegularImageList imageOnClick={context.setBookShowValue} filterState={state} movieData={MovieData}/>
                         </div>
                         <div className="right">
-                            <FilterCard  setFilterState={this.setState}/>
+                            <FilterCard  setFilterState={setState}/>
                         </div>
                     </div>
                </div>
+        );
     }
-}
 
 export default Home;
