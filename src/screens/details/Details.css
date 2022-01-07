@@ -1,0 +1,55 @@
+#main-container{
+    display: flex;
+    margin-top: 3.4%;
+}
+#left{
+    flex-basis: 20%;
+    height: 100vh;
+   
+}
+#middle{
+    flex-basis: 60%;
+    height: 100vh;
+    
+}
+#right{
+    flex-basis: 20%;
+    height: 100vh;
+    
+}
+.backLink{   
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+.sub-headings{
+    font-weight: normal;
+}
+
+#poster{
+    margin-left: 24px;
+    margin-top: 8px;
+    outline: solid 5px #FF7F7F;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px;
+    transition: outline 0.6s linear;    
+}
+#poster:hover{
+    outline-width: 8px;
+    box-shadow: 15px 15px 10px;   
+}
+
+#trailer{
+    display: flex;
+    width: 95%;  
+    
+}
+
+body{
+    background-color: #EEEEEE;
+}
+
+#threeDivs{
+    display: flex;
+    flex-direction: row;
+}

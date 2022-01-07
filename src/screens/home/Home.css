@@ -1,0 +1,26 @@
+.heading{
+    text-align: center;
+    padding: 8px 8px 8px 8px;
+    background-color: #ff9999;
+    font-size: 1rem;  
+    margin-top:3.4% ;  
+}
+
+.imageListDiv{
+    overflow-x: scroll;
+    width: 100%;   
+}
+
+.flex-container{
+    display: flex;
+    width: 100%;
+}
+
+.left{
+    width: 76%;
+}
+
+.right{
+    width: 24%;
+}
+
