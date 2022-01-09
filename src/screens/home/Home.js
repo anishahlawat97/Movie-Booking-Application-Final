@@ -1,13 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import './Home.css';
-import MovieData from '../../common/moviesData.js';
+// import MovieData from '../../common/moviesData.js';
 import ImageList from './ImageList.js';
 import RegularImageList from './RegularImageList';
 import FilterCard from './FilterCard.js';
 import AppContext from "../../AppContext";
 import Header from "../../common/header/Header";
+import { getMovies } from "../../API";
 
 function Home() {
+    const [MovieData, setMovieData] = useState([]);
     const [state, setState] = useState({
         movieName: '',
         genreName: [],
@@ -18,6 +20,19 @@ function Home() {
     })
     const context = useContext(AppContext);
     context.setBookShowValue(false)
+
+    useEffect(() => {        
+       getMovies('PUBLISHED')
+       .then(response => response.json())
+       .then(response => {
+           setMovieData(response.movies);
+       })
+       getMovies('RELEASED')
+       .then(response => response.json())
+       .then(response => {
+           setMovieData(response.movies);
+       })       
+    }, [])
 
     return (<div>
         <Header/>

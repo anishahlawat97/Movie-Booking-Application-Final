@@ -8,6 +8,7 @@ import AppContext from '../../AppContext';
 import InputField from './Input'
 import  * as Register  from './registerUser';
 import PropTypes from 'prop-types';
+import { login, signUp } from '../../API';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -115,25 +116,25 @@ function BasicModal(){
            {
                return user;
            }       
-        })        
+        })
+        login(formValues) 
+        .then(() =>  context.setLoginMessage('Successfully Logged In! Welcome '+userCredentials[0].firstname)) 
+        .catch(() => context.setLoginMessage("Invalid Username and / Password"))
+        //TODO : Remove below code once backend is implemented      
         if(userCredentials && userCredentials.length>0){
-            context.setLoginValue(true);
-            context.setLoginMessage('Successfully Logged In! Welcome '+userCredentials[0].firstname)
+            context.setLoginValue(true);           
             setTimeout(()=>{
                 handleClose()    
-            }, 1500) 
-                   
-        }
-        else{
-            context.setLoginMessage("Invalid Username and / Password")
-        }        
+            }, 1500)                    
+        }              
     }
 
     //Register a user handler
     const registerHandler = () => {        
         if(validateForm()){
-            Register.registerUser(formValues);
-            setRegisterUserMessage('Registration Successful. Please Login!');
+            signUp(formValues)
+            .then(() => setRegisterUserMessage('Registration Successful. Please Login!'))
+            Register.registerUser(formValues);            
         }
     }  
     

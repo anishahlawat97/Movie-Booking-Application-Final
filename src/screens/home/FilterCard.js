@@ -5,9 +5,10 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Select, MenuItem, Input, InputLabel, FormControl, Checkbox, TextField, ListItemText } from '@mui/material';
-import genre from '../../common/genre';
-import artists from '../../common/artists';
+// import genre from '../../common/genre';
+// import artists from '../../common/artists';
 import { createTheme } from '@mui/system';
+import { getArtists, getGenres } from '../../API';
 
 
 const bull = (
@@ -25,6 +26,19 @@ export default function FilterCard(props) {
     const [movieName, setMovieName] = React.useState('');
     const [startDate, setStartDate] = React.useState('');
     const [endDate, setEndDate] = React.useState('');
+
+    const [genre, setGenre] = React.useState([]);
+    const [artists, setArtists] = React.useState([]);
+
+    React.useEffect(() => {
+        getGenres()
+        .then(response => response.json())
+        .then(response => setGenre(response.genres))
+        console.log(genre)
+        getArtists()
+        .then(response => response.json())
+        .then(response => setArtists(response.artists))       
+    }, [])
 
   const handleChange1 = (event) => {
     const { target: { value } } = event;
@@ -97,9 +111,9 @@ export default function FilterCard(props) {
                     >                       
                         {
                             genre.map((item, index) => {
-                                return <MenuItem key={index} value={item.name}>                            
-                                            <Checkbox checked={genreName.indexOf(item.name) > -1} key={index} value={item.name}></Checkbox>
-                                            <ListItemText primary={item.name} />
+                                return <MenuItem key={index} value={item.genre}>                            
+                                            <Checkbox checked={genreName.indexOf(item.genre) > -1} key={index} value={item.genre}></Checkbox>
+                                            <ListItemText primary={item.genre} />
                                        </MenuItem>
                             })
                         }

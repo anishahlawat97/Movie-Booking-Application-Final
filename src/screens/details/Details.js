@@ -1,6 +1,5 @@
-import React, {useContext} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import './Details.css';
-import MovieList from '../../common/moviesData.js';
 import { Link, useParams } from 'react-router-dom';
 import { Typography } from "@mui/material";
 import YouTube from "react-youtube";
@@ -10,10 +9,19 @@ import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import AppContext from "../../AppContext";
 import Header from "../../common/header/Header";
+import { getMovieByID } from "../../API";
 
 function Details() {
     const { id } = useParams();    
     const context = useContext(AppContext);
+
+    const [items, setItems] = useState()
+
+    useEffect(() => {
+       getMovieByID(id)
+       .then(response => response.json())
+       .then(response => setItems(response))
+    }, [])
 
     const opts = {
         height: '420',
@@ -43,7 +51,7 @@ function Details() {
         <>   <Header/>        
             <div id="main-container">
                 {
-                MovieList.filter(item => item.id === id)
+                items && items
                     .map(item => (                           
                         <div id="threeDivs" key={item.id}>                       
                             <div id="left">
