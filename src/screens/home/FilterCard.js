@@ -61,9 +61,9 @@ export default function FilterCard(props) {
 
   const resetClickHandler = ()=>{
     setPersonName([])
-    setMovieName([])
+    setMovieName('')
     setGenreName([])
-    setStartDate([])
+    setStartDate("")
     setEndDate('')
   }
 
@@ -75,8 +75,7 @@ export default function FilterCard(props) {
           
       }
   })
-    return (
-        
+    return (        
         <Card sx={{ minWidth: 240,  m: 4 }}>
             <CardContent>
                 <Typography sx={{ fontSize: 14, minWidth: 240, maxWidth: 240}} color={theme.palette.primary.light} gutterBottom>
@@ -84,7 +83,7 @@ export default function FilterCard(props) {
                 </Typography>                
                 <FormControl sx={{m:theme.spacing(1), minWidth: 240, maxWidth: 240}}>
                     <InputLabel htmlFor="movieName">Movie Name</InputLabel>
-                    <Input onChange={(e)=>nameChangeHandler(e)} id="movieName" aria-describedby="my-helper-text" />
+                    <Input value={movieName} onChange={(e)=>nameChangeHandler(e)} id="movieName" aria-describedby="my-helper-text" />
                 </FormControl>
                 <FormControl variant="standard" sx={{ m:theme.spacing(1), minWidth: 240, maxWidth: 240}}>
                     <InputLabel id="demo-simple-select-standard-label">Genre</InputLabel>
@@ -129,11 +128,11 @@ export default function FilterCard(props) {
                 </FormControl>
                 <FormControl sx={{m:theme.spacing(1), mt:2, minWidth: 240, maxWidth: 240}}>
                     <InputLabel shrink htmlFor='dateStart'>Release Date Start</InputLabel>
-                    <TextField onChange={(e)=>dateChangeHandler1(e)} variant='standard' type='date'></TextField>
+                    <TextField value={startDate} onChange={(e)=>dateChangeHandler1(e)} variant='standard' type='date'></TextField>
                 </FormControl>    
                 <FormControl sx={{m:theme.spacing(1), mt:2, minWidth: 240, maxWidth: 240}}>
                     <InputLabel shrink htmlFor='dateEnd'>Release Date End</InputLabel>
-                    <TextField onChange={(e)=>dateChangeHandler2(e)} id='dateEnd'  variant='standard' type='date'></TextField>
+                    <TextField value={endDate} onChange={(e)=>dateChangeHandler2(e)} id='dateEnd'  variant='standard' type='date'></TextField>
                 </FormControl>  
                 <Button type='submit' onClick={filterClickHandler} fullWidth variant='contained' sx={{mt:2, color: 'primary', minWidth: 240}} >APPLY</Button> 
                 <Button type='submit' onClick={resetClickHandler} fullWidth variant='contained' sx={{mt:2, color: 'primary', minWidth: 240}} >RESET</Button>                            

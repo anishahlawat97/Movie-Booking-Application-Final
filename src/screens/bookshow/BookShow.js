@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../../common/header/Header";
 import { Typography } from "@mui/material";
 import "./BookShow.css";
-import Card from "@material-ui/core/Card";
+import { Card } from "@mui/material"; 
 import { CardContent } from "@mui/material";
 import { FormControl } from "@mui/material";
 import { InputLabel } from "@mui/material";
@@ -12,6 +12,7 @@ import { MenuItem } from "@mui/material";
 import { Button } from "@mui/material";
 import { FormHelperText } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const BookShow = (props) => {
   const [location, setLocation] = useState("");
@@ -33,10 +34,12 @@ const BookShow = (props) => {
   const [originalShows, setOriginalShows] = useState([]);
   const [showId, setShowId] = useState("");
 
+  const {id} = useParams();
+
   useEffect(() => {
     let dataShows = null;
 
-    fetch(props.baseUrl + "movies/" + props.params.id + "/shows", {
+    fetch(props.baseUrl + "movies/" + id + "/shows", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -167,7 +170,7 @@ const BookShow = (props) => {
     }
 
     props.history.push({
-      pathname: "/confirm/" + props.match.params.id,
+      pathname: "/confirm/" + id,
       bookingSummary: {
         location,
         theatre,
@@ -192,22 +195,25 @@ const BookShow = (props) => {
   };
 
   return (
-    <div>
+    <div className="main-container">
       <Header baseUrl={props.baseUrl} />
+      <Typography sx={{ mt: '8px', ml: '24px', mb: '0px', height: '24px', cursor: 'pointer' }}>
+          <Link to='/' className="backLink"> &lt; Back To Home </Link>
+      </Typography>
       <div className="bookShow">
         <Typography className="back">
-          <Link to={"/movie/" + props.match.params.id}>
+          <Link className="back" to={"/details/" + id}>
             &#60; Back to Movie Details
           </Link>
         </Typography>
-
         <Card className="cardStyle">
           <CardContent>
-            <Typography variant="headline" component="h2">
+            <Typography 
+             sx={{textAlign: 'center'}}
+             variant="headline" component="h2">
               BOOK SHOW
             </Typography>
             <br />
-
             <FormControl required className="formControl">
               <InputLabel htmlFor="location">Choose Location:</InputLabel>
               <Select value={location} onChange={locationChangeHandler}>
@@ -283,14 +289,15 @@ const BookShow = (props) => {
             </FormControl>
             <br />
             <br />
-            <Typography>Unit Price: Rs. {unitPrice}</Typography>
+            <Typography sx={{textAlign: 'center'}}>Unit Price: Rs. {unitPrice}</Typography>
             <br />
-            <Typography>
+            <Typography sx={{textAlign: 'center'}}>
               Total Price: Rs. {unitPrice * tickets}
             </Typography>
             <br />
             <br />
-            <Button
+            <Button 
+              fullWidth
               variant="contained"
               onClick={bookShowButtonHandler}
               color="primary"

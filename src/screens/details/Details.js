@@ -9,6 +9,7 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import AppContext from "../../AppContext";
+import Header from "../../common/header/Header";
 
 function Details() {
     const { id } = useParams();    
@@ -39,7 +40,7 @@ function Details() {
       }
 
     return (
-        <>            
+        <>   <Header/>        
             <div id="main-container">
                 {
                 MovieList.filter(item => item.id === id)
